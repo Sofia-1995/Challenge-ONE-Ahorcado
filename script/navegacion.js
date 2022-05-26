@@ -32,5 +32,5 @@ function volverHome() {
 
 buttonJuego.addEventListener("click", abrirJuego);
 buttonPalabra.addEventListener("click", abrirPalabra);
-// buttonCancelar.addEventListener("click", volverHome);
-// buttonDesistir.addEventListener("click", volverHome);
+buttonCancelar.addEventListener("click", volverHome);
+buttonDesistir.addEventListener("click", volverHome);
