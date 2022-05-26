@@ -25,8 +25,37 @@
         Agregar nueva palabra
       </button>
     </section>
-    <section class="juego-page hidden" id="juego-page">juego</section>
-    <section class="palabra-page hidden" id="palabra-page">palabra</section>
+    <section class="juego-page hidden" id="juego-page">
+      <div class="button-container">
+        <button id="button-nuevoJuevo" class="button-nuevoJuego" type="button">
+          Nuevo juego
+        </button>
+        <button id="button-desistir" class="button-desistir" type="button">
+          Desistir
+        </button>
+      </div>
+    </section>
+    <section class="palabra-page hidden" id="palabra-page">
+      <textarea
+        class="text-input"
+        type="text"
+        placeholder="Ingrese una palabra"
+        id="text-input"
+      ></textarea>
+      <div class="text-wrapper">
+        <img src="./image/circle-fill.svg" alt="" />
+        <p class="warning-text">Máx. de 8 letras</p>
+      </div>
+      <div class="button-container">
+        <button id="button-guardar" class="button-guardar" type="button">
+          Guardar y empezar
+        </button>
+        <button id="button-cancelar" class="button-cancelar" type="button">
+          Cancelar
+        </button>
+      </div>
+    </section>
+    <footer class="footer">Desarrollado por <b>Sofia Magali Pereyra</b></footer>
     <script src="./script/navegacion.js"></script>
   </body>
 </html>
