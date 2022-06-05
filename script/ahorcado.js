@@ -11,6 +11,7 @@ var palabraPage = document.querySelector("#palabra-page");
 
 // Contenedores de letras
 var boxLetrasCorrectas = document.querySelector("#letras-correctas");
+var boxLetrasIncorrectas = document.querySelector("#letras-incorrectas");
 
 var listaPalabras = ["AHORCADO", "ARBOL", "PALABRA", "JUEGO", "PERRO", "GATO"];
 var palabraSecreta = "";
@@ -22,12 +23,12 @@ function validarTecla(letra) {
   // pregunto si la tecla es valida
   // que no sea un espacio o enter, o escape, etc
   // y que no haya sido clickeada antes
-  // por ahora si entran numeros y simbolos
   var esTeclaValida = letra.length === 1;
   var esEspacio = letra === " ";
+  var esLetra = letra.toLowerCase() !== letra;
   var yaCliqueado = letrasCliqueadas.indexOf(letra) >= 0;
 
-  if (yaCliqueado || esEspacio) return false;
+  if (yaCliqueado || esEspacio || !esLetra) return false;
 
   letrasCliqueadas.push(letra);
 
@@ -67,8 +68,18 @@ function pintarLetrasCorrectas(letraCliqueada) {
   });
 }
 
-function pintarLetraIncorrecta(letra) {
+function pintarLetraIncorrecta(letraCliqueada) {
+  // pinto si o si
+  // pero necesito saber que clickeo
+  // pinto (letraCliqueada)
   console.log("pinto letra incorrecta!");
+
+  // creo un span con la letra
+  var spanLetra = document.createElement("span");
+  spanLetra.textContent = letraCliqueada;
+
+  // meto el span en el elemento que corresponda
+  boxLetrasIncorrectas.appendChild(spanLetra);
 }
 
 function perderIntento(letra) {
@@ -104,6 +115,8 @@ function inicializar() {
     item.classList.add("letra-caja");
     boxLetrasCorrectas.appendChild(item);
   });
+
+  // asigno evento detectar teclado
   document.addEventListener("keydown", detectarInput);
 }
 
