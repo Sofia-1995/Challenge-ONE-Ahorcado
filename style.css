@@ -16,7 +16,7 @@ body {
 .home-page {
   display: flex;
   gap: 38px;
-  height: 100vh;
+  height: calc(100vh - 47px);
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -67,7 +67,7 @@ body {
 /*Estilos palabra*/
 .palabra-page {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 47px);
   padding: 256px 0;
   box-sizing: border-box;
   justify-content: center;
@@ -167,12 +167,55 @@ body {
 /*Estilos Juego*/
 .juego-page {
   display: flex;
-  height: 100vh;
-  padding: 626px 56px;
+  min-height: calc(100vh - 47px);
+  padding: 148px 56px;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.letras-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 120px;
+  margin-bottom: 106px;
+}
+
+.letras-correctas {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.letra-caja {
+  width: 80px;
+  height: 92px;
+  border-bottom: 4px solid #0a3871;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letra-caja span {
+  color: #0a3871;
+  font-weight: 400;
+  font-size: 48px;
+}
+
+.letras-incorrectas {
+  display: flex;
+  gap: 24px;
+}
+
+.letras-incorrectas span {
+  color: #495057;
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .button-container {
@@ -229,9 +272,7 @@ body {
 }
 
 .footer {
-  position: absolute;
-  left: 16px;
-  bottom: 16px;
+  padding: 16px;
   font-size: 12px;
   color: #495057;
 }
