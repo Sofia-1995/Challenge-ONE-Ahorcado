@@ -11,6 +11,10 @@ var homePage = document.querySelector("#home-page");
 var juegoPage = document.querySelector("#juego-page");
 var palabraPage = document.querySelector("#palabra-page");
 
+// carteles
+var cartelGanador = document.querySelector("#cartel-ganar");
+var cartelPerder = document.querySelector("#cartel-perder");
+
 // Contenedores de letras
 var boxLetrasCorrectas = document.querySelector("#letras-correctas");
 var boxLetrasIncorrectas = document.querySelector("#letras-incorrectas");
@@ -112,13 +116,13 @@ function detectarInput(event) {
     if (validarLetra(letra)) {
       pintarLetrasCorrectas(letra);
       if (verificarGanador()) {
-        console.log("Es ganador");
+        cartelGanador.classList.remove("hidden")
       }
     } else {
       pintarLetraIncorrecta(letra);
       perderIntento();
       if (verificarFinJuego()) {
-        console.log("Perdio")
+        cartelPerder.classList.remove("hidden");
       }
     }
   }
