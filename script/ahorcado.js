@@ -3,6 +3,8 @@ var buttonJuego = document.querySelector("#button-juego");
 var buttonPalabra = document.querySelector("#button-palabra");
 var buttonCancelar = document.querySelector("#button-cancelar");
 var buttonDesistir = document.querySelector("#button-desistir");
+var buttonGuardar = document.querySelector("#button-guardar");
+var inputIngresarPalabra = document.querySelector("#text-input");
 
 // Sections
 var homePage = document.querySelector("#home-page");
@@ -152,7 +154,18 @@ function volverHome() {
   resetJuego();
 }
 
+// Agregar palabra
+function nuevaPalabra() {
+  var palabra = inputIngresarPalabra.value.toUpperCase().replace(" ", "");
+  if (palabra !== "") {
+    listaPalabras.push(palabra);
+    inputIngresarPalabra.value = ""
+    volverHome()
+  }
+}
+
 buttonJuego.addEventListener("click", abrirJuego);
 buttonPalabra.addEventListener("click", abrirPalabra);
 buttonCancelar.addEventListener("click", volverHome);
 buttonDesistir.addEventListener("click", volverHome);
+buttonGuardar.addEventListener("click", nuevaPalabra);
