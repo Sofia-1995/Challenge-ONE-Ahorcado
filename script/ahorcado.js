@@ -63,9 +63,6 @@ function pintarLetrasCorrectas(letraCliqueada) {
 
       // meto el span en la caja que le corresponde segun el index
       listaCajas[index].appendChild(spanLetra);
-
-      console.log(listaCajas);
-      console.log(`pinto la letra ${letraCliqueada} en la posicion ${index}`);
     }
   });
 }
@@ -74,7 +71,6 @@ function pintarLetraIncorrecta(letraCliqueada) {
   // pinto si o si
   // pero necesito saber que clickeo
   // pinto (letraCliqueada)
-  console.log("pinto letra incorrecta!");
 
   // creo un span con la letra
   var spanLetra = document.createElement("span");
@@ -88,11 +84,28 @@ function perderIntento(letra) {
   console.log("pinto letra incorrecta!");
 }
 
+function verificarGanador() {
+  var esGanador = true;
+
+  listaLetras.forEach(function (letra) {
+    // pregunto si letra no existe en letras cliqueadas
+    if (letrasCliqueadas.indexOf(letra) < 0) {
+      // si no existe, es imposible que sea ganador
+      esGanador = false;
+    }
+  });
+
+  return esGanador;
+}
+
 function detectarInput(event) {
   var letra = event.key.toUpperCase();
   if (validarTecla(letra)) {
     if (validarLetra(letra)) {
       pintarLetrasCorrectas(letra);
+      if (verificarGanador()) {
+        console.log("Es ganador");
+      }
     } else {
       pintarLetraIncorrecta(letra);
       perderIntento();
@@ -159,8 +172,8 @@ function nuevaPalabra() {
   var palabra = inputIngresarPalabra.value.toUpperCase().replace(" ", "");
   if (palabra !== "") {
     listaPalabras.push(palabra);
-    inputIngresarPalabra.value = ""
-    volverHome()
+    inputIngresarPalabra.value = "";
+    volverHome();
   }
 }
 
