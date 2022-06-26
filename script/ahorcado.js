@@ -19,6 +19,7 @@ var listaPalabras = ["AHORCADO", "ARBOL", "PALABRA", "JUEGO", "PERRO", "GATO"];
 var palabraSecreta = "";
 var letrasCliqueadas = [];
 var listaLetras = [];
+var intentosRestantes = 10;
 
 // Juego
 function validarTecla(letra) {
@@ -80,8 +81,9 @@ function pintarLetraIncorrecta(letraCliqueada) {
   boxLetrasIncorrectas.appendChild(spanLetra);
 }
 
-function perderIntento(letra) {
-  console.log("pinto letra incorrecta!");
+function perderIntento() {
+  intentosRestantes = intentosRestantes - 1;
+  console.log("Pintar horca!");
 }
 
 function verificarGanador() {
@@ -98,6 +100,12 @@ function verificarGanador() {
   return esGanador;
 }
 
+function verificarFinJuego() {
+  var finJuego = intentosRestantes === 0;
+
+  return finJuego;
+}
+
 function detectarInput(event) {
   var letra = event.key.toUpperCase();
   if (validarTecla(letra)) {
@@ -109,6 +117,9 @@ function detectarInput(event) {
     } else {
       pintarLetraIncorrecta(letra);
       perderIntento();
+      if (verificarFinJuego()) {
+        console.log("Perdio")
+      }
     }
   }
 }
