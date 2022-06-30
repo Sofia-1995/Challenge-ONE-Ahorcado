@@ -4,6 +4,7 @@ var buttonPalabra = document.querySelector("#button-palabra");
 var buttonCancelar = document.querySelector("#button-cancelar");
 var buttonDesistir = document.querySelector("#button-desistir");
 var buttonGuardar = document.querySelector("#button-guardar");
+var buttonNuevoJuego = document.querySelector("#button-nuevoJuevo");
 var inputIngresarPalabra = document.querySelector("#text-input");
 
 // Sections
@@ -11,9 +12,15 @@ var homePage = document.querySelector("#home-page");
 var juegoPage = document.querySelector("#juego-page");
 var palabraPage = document.querySelector("#palabra-page");
 
-// carteles
+// Carteles
 var cartelGanador = document.querySelector("#cartel-ganar");
 var cartelPerder = document.querySelector("#cartel-perder");
+
+// Dibujo ahorcado
+var tablero = document.querySelector("#juegoCanvas");
+var pincel = tablero.getContext("2d");
+pincel.fillStyle = "#0a3871";
+pincel.strokeStyle = "#0a3871";
 
 // Contenedores de letras
 var boxLetrasCorrectas = document.querySelector("#letras-correctas");
@@ -86,8 +93,53 @@ function pintarLetraIncorrecta(letraCliqueada) {
 }
 
 function perderIntento() {
+  if (intentosRestantes === 10) {
+    pincel.fillRect(0, 395, 294, 5);
+  }
+  if (intentosRestantes === 9) {
+    pincel.fillRect(100, 0, 5, 400);
+  }
+  if (intentosRestantes === 8) {
+    pincel.fillRect(100, 0, 180, 5);
+  }
+  if (intentosRestantes === 7) {
+    pincel.fillRect(280, 0, 5, 50);
+  }
+  if (intentosRestantes === 6) {
+    var circulo = new Path2D();
+    pincel.lineWidth = 5;
+    circulo.arc(280, 80, 30, 0, 2 * Math.PI);
+    pincel.stroke(circulo);
+  }
+  if (intentosRestantes === 5) {
+    pincel.fillRect(280, 110, 5, 135);
+  }
+  if (intentosRestantes === 4) {
+    pincel.beginPath();
+    pincel.moveTo(282, 110);
+    pincel.lineTo(350, 180);
+    pincel.stroke();
+  }
+  if (intentosRestantes === 3) {
+    pincel.beginPath();
+    pincel.moveTo(282, 110);
+    pincel.lineTo(210, 180);
+    pincel.stroke();
+  }
+  if (intentosRestantes === 2) {
+    pincel.beginPath();
+    pincel.moveTo(282, 245);
+    pincel.lineTo(210, 315);
+    pincel.stroke();
+  }
+  if (intentosRestantes === 1) {
+    pincel.beginPath();
+    pincel.moveTo(282, 245);
+    pincel.lineTo(350, 315);
+    pincel.stroke();
+  }
+
   intentosRestantes = intentosRestantes - 1;
-  console.log("Pintar horca!");
 }
 
 function verificarGanador() {
@@ -116,25 +168,24 @@ function detectarInput(event) {
     if (validarLetra(letra)) {
       pintarLetrasCorrectas(letra);
       if (verificarGanador()) {
-        cartelGanador.classList.remove("hidden")
+        cartelGanador.classList.remove("hidden");
+        document.removeEventListener("keydown", detectarInput);
       }
     } else {
       pintarLetraIncorrecta(letra);
       perderIntento();
       if (verificarFinJuego()) {
         cartelPerder.classList.remove("hidden");
+        document.removeEventListener("keydown", detectarInput);
       }
     }
   }
 }
 
 function inicializar() {
-  console.log("cargar juego");
-
   // escoger palabra secreta
   var palabra = listaPalabras[Math.floor(Math.random() * listaPalabras.length)];
   palabraSecreta = palabra;
-  console.log(palabra);
 
   // guardo la lista de letras de la palabra elegida
   listaLetras = palabra.split("");
@@ -155,6 +206,12 @@ function resetJuego() {
   palabraSecreta = "";
   letrasCliqueadas = [];
   listaLetras = [];
+  cartelGanador.classList.add("hidden");
+  cartelPerder.classList.add("hidden");
+  pincel.clearRect(0, 0, tablero.width, tablero.height);
+  intentosRestantes = 10;
+  boxLetrasCorrectas.innerHTML = "";
+  boxLetrasIncorrectas.innerHTML = "";
 }
 
 // Navegacion
@@ -192,8 +249,14 @@ function nuevaPalabra() {
   }
 }
 
+function nuevoJuego() {
+  resetJuego();
+  inicializar();
+}
+
 buttonJuego.addEventListener("click", abrirJuego);
 buttonPalabra.addEventListener("click", abrirPalabra);
 buttonCancelar.addEventListener("click", volverHome);
 buttonDesistir.addEventListener("click", volverHome);
 buttonGuardar.addEventListener("click", nuevaPalabra);
+buttonNuevoJuego.addEventListener("click", nuevoJuego);
