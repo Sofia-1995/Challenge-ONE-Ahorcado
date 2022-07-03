@@ -59,7 +59,6 @@ function pintarLetrasCorrectas(letraCliqueada) {
   // pero necesito saber
   // que pinto (letraCliqueada)
   // donde lo pinto (posicion de la letra)
-  console.log("pinto letras!");
 
   // recorro la lista de letras
   listaLetras.forEach(function (letra, index) {
@@ -93,50 +92,52 @@ function pintarLetraIncorrecta(letraCliqueada) {
 }
 
 function perderIntento() {
-  if (intentosRestantes === 10) {
-    pincel.fillRect(0, 395, 294, 5);
-  }
-  if (intentosRestantes === 9) {
-    pincel.fillRect(100, 0, 5, 400);
-  }
-  if (intentosRestantes === 8) {
-    pincel.fillRect(100, 0, 180, 5);
-  }
-  if (intentosRestantes === 7) {
-    pincel.fillRect(280, 0, 5, 50);
-  }
-  if (intentosRestantes === 6) {
-    var circulo = new Path2D();
-    pincel.lineWidth = 5;
-    circulo.arc(280, 80, 30, 0, 2 * Math.PI);
-    pincel.stroke(circulo);
-  }
-  if (intentosRestantes === 5) {
-    pincel.fillRect(280, 110, 5, 135);
-  }
-  if (intentosRestantes === 4) {
-    pincel.beginPath();
-    pincel.moveTo(282, 110);
-    pincel.lineTo(350, 180);
-    pincel.stroke();
-  }
-  if (intentosRestantes === 3) {
-    pincel.beginPath();
-    pincel.moveTo(282, 110);
-    pincel.lineTo(210, 180);
-    pincel.stroke();
-  }
-  if (intentosRestantes === 2) {
-    pincel.beginPath();
-    pincel.moveTo(282, 245);
-    pincel.lineTo(210, 315);
-    pincel.stroke();
-  }
-  if (intentosRestantes === 1) {
-    pincel.beginPath();
-    pincel.moveTo(282, 245);
-    pincel.lineTo(350, 315);
-    pincel.stroke();
+  switch (intentosRestantes) {
+    case 10:
+      pincel.fillRect(0, 395, 294, 5);
+      break;
+    case 9:
+      pincel.fillRect(100, 0, 5, 400);
+      break;
+    case 8:
+      pincel.fillRect(100, 0, 180, 5);
+      break;
+    case 7:
+      pincel.fillRect(280, 0, 5, 50);
+      break;
+    case 6:
+      var circulo = new Path2D();
+      pincel.lineWidth = 5;
+      circulo.arc(280, 80, 30, 0, 2 * Math.PI);
+      pincel.stroke(circulo);
+      break;
+    case 5:
+      pincel.fillRect(280, 110, 5, 135);
+      break;
+    case 4:
+      pincel.beginPath();
+      pincel.moveTo(282, 110);
+      pincel.lineTo(350, 180);
+      pincel.stroke();
+      break;
+    case 3:
+      pincel.beginPath();
+      pincel.moveTo(282, 110);
+      pincel.lineTo(210, 180);
+      pincel.stroke();
+      break;
+    case 2:
+      pincel.beginPath();
+      pincel.moveTo(282, 245);
+      pincel.lineTo(210, 315);
+      pincel.stroke();
+      break;
+    case 1:
+      pincel.beginPath();
+      pincel.moveTo(282, 245);
+      pincel.lineTo(350, 315);
+      pincel.stroke();
+      break;
   }
 
   intentosRestantes = intentosRestantes - 1;
