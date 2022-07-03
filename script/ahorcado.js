@@ -26,7 +26,18 @@ pincel.strokeStyle = "#0a3871";
 var boxLetrasCorrectas = document.querySelector("#letras-correctas");
 var boxLetrasIncorrectas = document.querySelector("#letras-incorrectas");
 
-var listaPalabras = ["AHORCADO", "ARBOL", "PALABRA", "JUEGO", "PERRO", "GATO"];
+var listaPalabras = [
+  "AHORCADO",
+  "ARBOL",
+  "PALABRA",
+  "JUEGO",
+  "PERRO",
+  "GATO",
+  "GUITARRA",
+  "CASA",
+  "CASTILLO",
+  "PROGRAMA",
+];
 var palabraSecreta = "";
 var letrasCliqueadas = [];
 var listaLetras = [];
